@@ -1,1 +1,1 @@
-array_paths = ["Test Sound Original.m4a","Test Sounds "]
+array_paths = ["Wet Sounds_Balloon Pop Stairwell 2.mp3", "Wet Sounds_Balloon Pop Stairwell.mp3", "Wet Sounds_Shoe Smack in Stairwell 1.mp3", "Wet Sounds_Shoe Smack in Stairwell 2.mp3"]
