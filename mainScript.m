@@ -1,5 +1,8 @@
 wet_sounds = ["Wet Sounds\Wet Sounds_Balloon Pop Stairwell 2.mp3", "Wet Sounds\Wet Sounds_Balloon Pop Stairwell.mp3", "Wet Sounds\Wet Sounds_Shoe Smack in Stairwell 1.mp3", "Wet Sounds\Wet Sounds_Shoe Smack in Stairwell 2.mp3"];
-original_sound = audioread("Wet Sounds\Test Sound Original.m4a");
+original_sound= audioread("Wet Sounds\Test Sound Original.m4a");
+recorded_original_sound = audioread("Wet Sounds\Test Sound Recording.m4a");
+recorded_original_sound_clipped = recorded_original_sound(1000:end,:);
+plot(recorded_original_sound_clipped);
 processed_sounds = {};
 for i=1:length(wet_sounds)
     [audio_samples,fs]=audioread(wet_sounds(i));
@@ -16,5 +19,6 @@ for i=1:length(wet_sounds)
     processed_sounds{i} = processed_sound_normalized;
     figure;
     %HelperFunctions.visualHelper(audio_clipped, fs)
+   
 end
 
