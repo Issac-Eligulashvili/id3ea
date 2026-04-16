@@ -3,14 +3,14 @@ original_sound = ("Wet Sounds\Test Sound Original.m4a");
 [original_sound,fs]=audioread(original_sound);
 recorded_original_sound = audioread("Wet Sounds\Test Sound Recording.m4a");
 recorded_original_sound_clipped = recorded_original_sound(140000:end,:);
-%plot(recorded_original_sound_clipped);
-%sound(recorded_original_sound_clipped,fs);
+plot(recorded_original_sound_clipped);
+sound(recorded_original_sound_clipped,fs);
 processed_sounds = {};
 for i=1:length(wet_sounds)
     [audio_samples,fs]=audioread(wet_sounds(i));
 
     audio_clipped=audio_samples(4800:end,:);
-    %plot(audio_clipped);
+    plot(audio_clipped);
     %RMS Normalization
     audio_normalized = 0.1 * (audio_clipped / sqrt(mean(audio_clipped.^2)));
     og_audio_normalized = 0.1 * (original_sound / sqrt(mean(original_sound.^2)));
@@ -27,3 +27,25 @@ for i=1:length(wet_sounds)
    
 end
 
+resp1_file=load("Respfiles\response1.mat");
+resp2_file=load("Respfiles\response2.mat");
+
+resp1=resp1_file.blo;
+resp1_fs=fs;
+
+resp2=resp2_file.bhi;
+resp2_fs=fs;
+
+processed_resp1 = HelperFunctions.audioHelper(og_audio_normalized, resp1);
+processed_resp2 = HelperFunctions.audioHelper(og_audio_normalized, resp2);
+
+figure;
+HelperFunctions.visualHelper(resp1, resp1_fs)
+
+figure;
+HelperFunctions.visualHelper(resp2, resp2_fs)
+
+soundsc(processed_resp1,fs);
+
+pause(length(processed_resp1)/fs+1);
+soundsc(processed_resp2,fs);
